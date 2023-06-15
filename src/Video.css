@@ -1,0 +1,30 @@
+.frame {
+  position: relative;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+.video {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+/* TODO: the caption and username text are currently not alligned with the video */
+/* Make it so these are aligned to the left side of the video with a small amount of padding */
+
+.body {
+  position: absolute;
+  bottom: 20vh;
+  left: 2vh;
+  text-align: left;
+  color: white;
+}
+
+.user {
+  font-weight: 800;
+}
+
+.caption {
+  font-weight: 300;
+}
