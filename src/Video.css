@@ -1,3 +1,8 @@
+*, html {
+
+  scroll-behavior: smooth !important;
+}
+
 .frame {
   position: relative;
   height: 100%;
@@ -16,9 +21,10 @@
 .body {
   position: absolute;
   bottom: 20vh;
-  left: 2vh;
+  left: 1.5vh;
   text-align: left;
   color: white;
+  width: 80%;
 }
 
 .user {
@@ -27,4 +33,66 @@
 
 .caption {
   font-weight: 300;
+}
+
+.sidebar {
+  position: absolute;
+  top: 27.5%;
+  right: 0;
+  text-align: center;
+}
+
+.pfp { 
+  width: 50%;
+  height: auto;
+  margin-left: 0.5vh;
+}
+
+.like {
+  position: 'absolute';
+  width: 2.5rem;
+  margin-left: 0.9vh;
+  margin-top: 2.5vh;
+  color: white;
+  text-align: center;
+}
+
+.like h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.scroll {
+  margin-top: 2vh;
+  margin-right: 2.8vh;
+  transition: 0.2s;
+  color: white;
+}
+
+.scroll h4 {
+  margin-top: 0;
+  margin-bottom: 0.5vh;
+}
+
+.scroll:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.frame_bottom {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 90%;
+  left: 1.5vh;
+  transition: 0.2s;
+  color: white;
+  text-align: center;
+  gap: 10px;
+}
+
+.frame_bottom:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
