@@ -1,30 +1,23 @@
-*, html {
-
-  scroll-behavior: smooth !important;
-}
-
-.frame {
-  position: relative;
-  height: 100%;
-  scroll-snap-align: start;
-}
-
-.video {
-  object-fit: fill;
+.container {
+  position: fixed;
+  text-align: center;
+  color: white;
   width: 100%;
   height: 100%;
 }
 
-/* TODO: the caption and username text are currently not alligned with the video */
-/* Make it so these are aligned to the left side of the video with a small amount of padding */
+.video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 
-.body {
+.text_container {
   position: absolute;
-  bottom: 20vh;
-  left: 1.5vh;
+  bottom: 8px;
+  left: 16px;
   text-align: left;
-  color: white;
-  width: 80%;
+  width: 75%;
 }
 
 .user {
@@ -35,11 +28,24 @@
   font-weight: 300;
 }
 
+.button_container {
+  position: absolute;
+  top: 8px;
+  right: 4px;
+}
+
 .sidebar {
   position: absolute;
-  top: 27.5%;
-  right: 0;
-  text-align: center;
+  bottom: 8px;
+  right: 4px;
+}
+
+.button_format {
+  outline: 'none';
+  border: 'none';
+  background-color: 'transparent';
+  color: white;
+  size: 42px;
 }
 
 .pfp { 
@@ -50,11 +56,10 @@
 
 .like {
   position: 'absolute';
-  width: 2.5rem;
-  margin-left: 0.9vh;
   margin-top: 2.5vh;
   color: white;
   text-align: center;
+  size: 42;
 }
 
 .like h4 {
@@ -65,14 +70,14 @@
 
 .scroll {
   margin-top: 2vh;
-  margin-right: 2.8vh;
   transition: 0.2s;
   color: white;
+  size: 42;
 }
 
 .scroll h4 {
   margin-top: 0;
-  margin-bottom: 0.5vh;
+  margin-bottom: 0;
 }
 
 .scroll:hover {

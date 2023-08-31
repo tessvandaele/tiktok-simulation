@@ -2,10 +2,7 @@ import React, {useState} from 'react';
 import Modal from 'react-modal';
 import { AiFillInfoCircle, AiFillCloseCircle } from 'react-icons/ai';
 
-import summaries from './static/video_summaries.json';
-import video_data from './static/video_data.json';
-
-function MoreInfoWindow({ id }) {
+function MoreInfoWindow({ detailedInfo }) {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const openModal = () => { setIsOpen(true) };
@@ -13,38 +10,32 @@ function MoreInfoWindow({ id }) {
 
     return (
         <div>
-            <AiFillInfoCircle size={42} style={{color: 'white'}} onClick={openModal}/>
+            <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={openModal}> 
+                <AiFillInfoCircle size={42} style={{color: 'white'}} aria-label={"Detailed Information"}/>
+            </button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel="More Info"
             >
                 <h3>Summary</h3>
                 <div>
-                    {/* {summaries[id]["summary_50"]} */}
-                    This is filler text where the long summary will eventually go.
-                </div>
-                
-                <h3>Per shot summary</h3>
-                <div>
-                    This is filler text where the per shot summary will eventually go.
+                    {detailedInfo.long_description}
                 </div>
 
                 <h3>OCR Transcript</h3>
                 <div>
-                    
+                    {detailedInfo.ocr_text}
+                </div>
+                
+                <h3>Per shot summary</h3>
+                <div>
+                    {detailedInfo.shot_descriptions}
                 </div>
 
-                {/* <h3>Other Details</h3> */}
-                {/* <div>
-                    <div>Number of Likes: {video_data[id]["likes"]}</div> <br />
-                    <div>Number of Comments: {video_data[id]["comments"]} </div> <br />
-                    <div>Number of Bookmarks: {video_data[id]["bookmarks"]}</div> <br />
-                    <div>Number of Shares: {video_data[id]["shares"]}</div> <br />
-                </div> */}
 
-                <AiFillCloseCircle size={42} onClick={closeModal} style={{position: "absolute", top: 15, right: 10, lineHeight: 0}}/>
-
+                <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent', position: 'absolute', top: '8px', right: '4px'}} onClick={closeModal}> 
+                    <AiFillCloseCircle size={42} style={{color: 'black'}} aria-label={"Close window"}/>
+                </button>
             </Modal>
         </div>
     )

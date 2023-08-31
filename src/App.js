@@ -1,7 +1,8 @@
 import './App.css';
-import VideoList from "./VideoList";
+import Video from "./Video";
 import Home from "./Home";
-import video_data from './static/all_video_data.json';
+import video_data from './static/video_data.json';
+import tutorial_data from './static/tutorial_data.json';
 import { Route, Routes, useLocation} from "react-router-dom";
 
 
@@ -38,11 +39,20 @@ function App() {
       <Routes location={location} key={location.pathname} >
           
             <Route index element={<Home />} />
-            <Route path="tutorial" element={<VideoList videos={watch_videos1} BASELINE={true}/>} />
-            <Route path="task-1" element={<VideoList videos={watch_videos1} BASELINE={true} />} />
-            <Route path="task-2" element={<VideoList videos={scroll_videos1} BASELINE={true} />} />
-            <Route path="task-3" element={<VideoList videos={watch_videos2} BASELINE={false} />} />
-            <Route path="task-4" element={<VideoList videos={scroll_videos2} BASELINE={false} />} />
+            {/* 5 videos from the formative study, prototype enabled */}
+            <Route path="tutorial" element={<Video videos={tutorial_data} baseline={false}/>} />
+
+            {/* TASK 1 */}
+            {/* 4 selected video (randomized), prototype disabled */}
+            <Route path="task-1 (baseline)" element={<Video videos={watch_videos1} baseline={true} />} />
+            {/* 4 selected video (randomized), prototype enabled */}
+            <Route path="task-1 (prototype)" element={<Video videos={watch_videos2} baseline={false} />} />
+
+            {/* TASK 2 */}
+            {/* 25 selected video (randomized), prototype disabled */}
+            <Route path="task-2 (baseline)" element={<Video videos={scroll_videos1} baseline={true} />} />
+            {/* 25 selected video (randomized), prototype enabled */}
+            <Route path="task-2 (prototype)" element={<Video videos={scroll_videos2} baseline={false} />} />
           
           {/*<Route path="*" element={<PageNotFound />*/}
       </Routes>
