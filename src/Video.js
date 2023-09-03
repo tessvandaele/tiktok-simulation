@@ -1,5 +1,5 @@
 import './Video.css';
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { BsArrowDownCircleFill, BsArrowUpCircleFill, BsPlayCircleFill, BsPauseCircleFill, BsBookmarkFill, BsFillDiscFill } from 'react-icons/bs';
 import {AiFillMessage, AiFillHeart} from 'react-icons/ai';
 import {PiShareFatFill} from 'react-icons/pi';
@@ -50,6 +50,20 @@ function Video({videos, baseline}) {
     });
   }
 
+  useEffect(() => {
+    videoRef.current.volume = 0;     
+    videoRef.current.play();
+    setPlaying(true);
+    videoRef.current.volume = 1;
+  }, []);
+
+  useEffect(() => {
+    videoRef.current.volume = 0;     
+    videoRef.current.play();
+    setPlaying(true);
+    videoRef.current.volume = 1;
+  }, [index]);
+
   return (
     <div class='container'>
       {/* video */}
@@ -91,7 +105,7 @@ function Video({videos, baseline}) {
       {/* text info */}
       <div className='text_container'>
         {!baseline && (<p className='caption'> 
-        {videos[index].description}
+        {videos[index].summary_10}
         </p>)}
         <h3 className='user'>@{videos[index].user}</h3>
         <p className='caption'>{videos[index].caption}</p>
@@ -100,7 +114,7 @@ function Video({videos, baseline}) {
       {/* video info sidebar */}
       <div className='sidebar'>
         {!baseline && (
-          <MoreInfoWindow detailedInfo={videos[index].detailedInfo}/>
+          <MoreInfoWindow video={videos[index]}/>
        )}
         
         

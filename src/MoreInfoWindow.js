@@ -2,11 +2,18 @@ import React, {useState} from 'react';
 import Modal from 'react-modal';
 import { AiFillInfoCircle, AiFillCloseCircle } from 'react-icons/ai';
 
-function MoreInfoWindow({ detailedInfo }) {
+function MoreInfoWindow({ video }) {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const openModal = () => { setIsOpen(true) };
     const closeModal = () => { setIsOpen(false) };
+
+    function tooLong() {
+        if(video.video_description.length > 50) {
+            return true;
+        }
+        return false;
+    }
 
     return (
         <div>
@@ -17,19 +24,18 @@ function MoreInfoWindow({ detailedInfo }) {
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
             >
-                <h3>Summary</h3>
-                <div>
-                    {detailedInfo.long_description}
-                </div>
-
-                <h3>OCR Transcript</h3>
-                <div>
-                    {detailedInfo.ocr_text}
+                <h3>Video Description</h3>
+                {tooLong() ?
+                <div>{video.summary_50}</div>
+                : <div>{video.video_description}</div> }
+                <h3>Engrained Text</h3>
+                <div style={{whiteSpace: 'pre-line'}}>
+                    {video.ocr}
                 </div>
                 
-                <h3>Per shot summary</h3>
-                <div>
-                    {detailedInfo.shot_descriptions}
+                <h3>Per Shot Descriptions</h3>
+                <div style={{whiteSpace: 'pre-line'}}>
+                    {video.shot_descriptions}
                 </div>
 
 

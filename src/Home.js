@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Home() {
     return (
         <div>
-        <h1>Welcome to My Home Page</h1>
+        <h1 role="presentation" aria-label='Short Video Accessibility Prototype'>Short Video Accessibility Prototype</h1>
         <ul>
           <li><Link to="tutorial">Tutorial</Link></li>
           <li><Link to="task-1 (baseline)">Task 1 (baseline)</Link></li>
