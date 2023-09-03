@@ -107,7 +107,7 @@ function Video({videos, baseline}) {
         {!baseline && (<p className='caption'> 
         {videos[index].summary_10}
         </p>)}
-        <h3 className='user'>@{videos[index].user}</h3>
+        <h3 aria-label={`@ ${videos[index].user}`} className='user'>{`@ ${videos[index].user}`}</h3>
         <p className='caption'>{videos[index].caption}</p>
       </div>
 
@@ -120,22 +120,24 @@ function Video({videos, baseline}) {
         
         <div className='scroll'>
           <AiFillHeart size={42} style={{color: "white"}}/>
-          <h4>{videos[index].likes}</h4>
+          <div>
+            <h4 aria-label={`${videos[index].likes} likes`}>{videos[index].likes}</h4>
+          </div>          
         </div>
 
         <div className='scroll' aria-label="Comments Icon">
           <AiFillMessage size={42} style={{color: "white"}}/>
-          <h4>{videos[index].comments}</h4>
+          <h4 aria-label={`${videos[index].comments} comments`}>{videos[index].comments}</h4>
         </div>
 
         <div className='scroll' aria-label="Bookmarks Icon">
           <BsBookmarkFill size={42} style={{color: 'white'}} />
-          <h4>{videos[index].bookmarks}</h4>
+          <h4 aria-label={`${videos[index].bookmarks} saves`}>{videos[index].bookmarks}</h4>
         </div>
 
         <div className='scroll' aria-label="Share Icon">
           <PiShareFatFill size={42} style={{color: 'white'}}/>
-          <h4>{videos[index].shares}</h4>
+          <h4 aria-label={`${videos[index].shares} shares`}>{videos[index].shares}</h4>
         </div>
       </div>
 
