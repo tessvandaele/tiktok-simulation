@@ -13,7 +13,7 @@ function MoreInfoWindow({ video, videoRef, taskType }) {
     const openModal = () => { setIsOpen(true) };
     const closeModal = () => { setIsOpen(false) };
 
-    const USER_ID = "testing2";
+    const USER_ID = "Giulia";
 
     function logEvent(userId, interaction, element, video_id, video_time, task_type) {
         const db = getDatabase();

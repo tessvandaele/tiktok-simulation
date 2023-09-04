@@ -23,8 +23,8 @@ function shuffleArray(array) {
 shuffleArray(scroll_videos);
 
 //splitting videos into tasks
-const watch_videos1 = watch_videos.slice(0, watch_videos.length / 2);
-const watch_videos2 = watch_videos.slice(watch_videos.length / 2);
+const watch_videos2 = watch_videos.slice(0, watch_videos.length / 2);
+const watch_videos1 = watch_videos.slice(watch_videos.length / 2);
 const scroll_videos1 = scroll_videos.slice(0, scroll_videos.length / 2);
 const scroll_videos2 = scroll_videos.slice(scroll_videos.length / 2);
 
