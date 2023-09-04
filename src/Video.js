@@ -4,15 +4,53 @@ import { BsArrowDownCircleFill, BsArrowUpCircleFill, BsPlayCircleFill, BsPauseCi
 import {AiFillMessage, AiFillHeart} from 'react-icons/ai';
 import {PiShareFatFill} from 'react-icons/pi';
 import MoreInfoWindow from './MoreInfoWindow';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set, onChildAdded, push } from "firebase/database";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCF5Ie8zLvNT47hOLSqTe4VAGwRSMOFkRA",
+  authDomain: "short-video-descriptions.firebaseapp.com",
+  databaseURL: "https://short-video-descriptions-default-rtdb.firebaseio.com",
+  projectId: "short-video-descriptions",
+  storageBucket: "short-video-descriptions.appspot.com",
+  messagingSenderId: "820122719648",
+  appId: "1:820122719648:web:19f792b18208d72c1380c5",
+  measurementId: "G-9MYQWMLXG4"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const USER_ID = "Holly";
 
 // Video element with url as param
-function Video({videos, baseline}) {
+function Video({videos, baseline, taskType}) {
   const num_videos = videos.length;
 
   //useState saves and changes the state of playing to keep track of playing/pausing
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
   const [index, setIndex] = useState(0);
+
+  function logEvent(userId, interaction, element, video_id, video_time, task_type) {
+    const db = getDatabase();
+    const reference = ref(db, "users/" + userId + "/" + task_type + "/");
+    const newRef = push(reference);
+    const curDate = new Date();
+
+    set(newRef, {
+      interaction: interaction,
+      buttonType: element,
+      videoId: video_id,
+      videoTime: video_time,
+      timestamp: Date.now()
+    });
+  }
 
   function onPlayPause () {
     if (playing) {
@@ -78,13 +116,21 @@ function Video({videos, baseline}) {
       {/* video navigation buttons */}
       <div className='button_container'>
         <div className='scroll'>
-          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={onPrevious}> 
+          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={ () => {
+              onPrevious();
+              logEvent(USER_ID, "click", "previous video", videos[index].url, videoRef.current.currentTime, taskType);
+            }
+          }> 
             <BsArrowUpCircleFill size={42} style={{color: 'white'}} aria-label={"Previous video"}/>
           </button>
         </div>
 
         <div className='scroll'>
-          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={onPlayPause}> 
+          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={ () => {
+              onPlayPause();
+              logEvent(USER_ID, "click", playing ? "pause" : "play", videos[index].url, videoRef.current.currentTime, taskType);
+            }
+          }> 
             {
             playing ? 
             <BsPauseCircleFill size={42} style={{color: 'white'}} aria-label={"Pause button"} 
@@ -96,7 +142,11 @@ function Video({videos, baseline}) {
         </div>
 
         <div className='scroll'>
-          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={onNext}> 
+          <button style={{outline: 'none', border: 'none', backgroundColor: 'transparent'}} onClick={() => {
+              onNext();
+              logEvent(USER_ID, "click", "next video", videos[index].url, videoRef.current.currentTime, taskType);
+            }
+          }> 
             <BsArrowDownCircleFill size={42} style={{color: 'white'}} aria-label={"Next video"}/>
           </button>
         </div>
@@ -114,7 +164,7 @@ function Video({videos, baseline}) {
       {/* video info sidebar */}
       <div className='sidebar'>
         {!baseline && (
-          <MoreInfoWindow video={videos[index]}/>
+          <MoreInfoWindow video={videos[index]} videoRef={videoRef} taskType={taskType}/>
        )}
         
         
