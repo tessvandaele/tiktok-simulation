@@ -6,8 +6,7 @@ import {PiShareFatFill} from 'react-icons/pi';
 import MoreInfoWindow from './MoreInfoWindow';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onChildAdded, push } from "firebase/database";
-import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set, push } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -41,7 +40,6 @@ function Video({videos, baseline, taskType}) {
     const db = getDatabase();
     const reference = ref(db, "users/" + userId + "/" + task_type + "/");
     const newRef = push(reference);
-    const curDate = new Date();
 
     set(newRef, {
       interaction: interaction,
@@ -159,6 +157,7 @@ function Video({videos, baseline, taskType}) {
         </p>)}
         <h3 aria-label={`@ ${videos[index].user}`} className='user'>{`@ ${videos[index].user}`}</h3>
         <p className='caption'>{videos[index].caption}</p>
+        <BsFillDiscFill size={42} style={{color: "white"}} /><h5 aria-label={"source audio - " + videos[index].originalSound}>{videos[index].originalSound}</h5>
       </div>
 
       {/* video info sidebar */}
