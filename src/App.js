@@ -23,8 +23,8 @@ function shuffleArray(array) {
 shuffleArray(scroll_videos);
 
 //splitting videos into tasks
-const watch_videos2 = watch_videos.slice(0, watch_videos.length / 2);
-const watch_videos1 = watch_videos.slice(watch_videos.length / 2);
+const watch_videos1 = watch_videos.slice(0, watch_videos.length / 2);
+const watch_videos2 = watch_videos.slice(watch_videos.length / 2);
 const scroll_videos1 = scroll_videos.slice(0, scroll_videos.length / 2);
 const scroll_videos2 = scroll_videos.slice(scroll_videos.length / 2);
 
@@ -45,15 +45,15 @@ function App() {
 
             {/* TASK 1 */}
             {/* 4 selected video (randomized), prototype disabled */}
-            <Route path="task-1 (baseline)" element={<Video videos={watch_videos1} baseline={true} taskType={"task_1_baseline"}/>} />
+            <Route path="task-1 (baseline)" element={<Video videos={watch_videos1} baseline={false} taskType={"task_1_baseline"}/>} />
             {/* 4 selected video (randomized), prototype enabled */}
-            <Route path="task-1 (prototype)" element={<Video videos={watch_videos2} baseline={false} taskType={"task_1_prototype"}/>} />
+            <Route path="task-1 (prototype)" element={<Video videos={watch_videos2} baseline={true} taskType={"task_1_prototype"}/>} />
 
             {/* TASK 2 */}
             {/* 25 selected video (randomized), prototype disabled */}
-            <Route path="task-2 (baseline)" element={<Video videos={scroll_videos2} baseline={true} taskType={"task_2_baseline"}/>} />
+            <Route path="task-2 (baseline)" element={<Video videos={scroll_videos2} baseline={false} taskType={"task_2_baseline"}/>} />
             {/* 25 selected video (randomized), prototype enabled */}
-            <Route path="task-2 (prototype)" element={<Video videos={scroll_videos1} baseline={false} taskType={"task_2_prototype"}/>} />
+            <Route path="task-2 (prototype)" element={<Video videos={scroll_videos1} baseline={true} taskType={"task_2_prototype"}/>} />
           
           {/*<Route path="*" element={<PageNotFound />*/}
       </Routes>
