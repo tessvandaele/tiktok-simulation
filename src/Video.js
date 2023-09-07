@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const USER_ID = "Karen";
+const USER_ID = "Kaley";
 
 // Video element with url as param
 function Video({videos, baseline, taskType}) {
